@@ -1,0 +1,32 @@
+{% extends 'video_clips/base.html' %}
+{% load static %}
+{% load thumbnail %}
+{% load bootstrap4 %}
+{% load vc_tags %}
+
+
+
+
+{% block title %}{{title}}{% endblock %}
+{% block content %}
+
+
+<ul>
+    {% for p in posts %}
+    <li>
+        <h2>{{p.title}}</h2>
+        {% if p.image %}
+        <p><img src="{% thumbnail p.image 'default' %}"></p>
+        {% endif %}
+        <p>{{p.price}}</p>
+        <p>{{p.url}}</p>
+        <p>{{p.categ}}</p>
+        <p><a href="{{ p.get_absolute_url }}"> Смотреть пост</a></p>
+        <hr>
+    </li>
+    {% endfor %}
+</ul>
+
+
+{% endblock %}
+

@@ -1,0 +1,120 @@
+{% load static %}
+{% load bootstrap4 %}
+{% load vc_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!--мета тэг, для адаптивной верстки-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{% static 'video_clips/images/favicon.ico' %}" type="image/x-icon">
+    <!--css bootstrap-->
+    <link rel="stylesheet" href="{% static 'video_clips/bootstrap/css/bootstrap.min.css' %}" type="text/css">
+    <!--подключаем иконки-->
+    <link rel="stylesheet" href="{% static 'video_clips/css/fontello.css' %}">
+    <title>{% block title %}{% endblock %}</title>
+    <!--свои стили после bootstrap, они буду иметь приоритет-->
+    <link type="text/css" href="{% static 'video_clips/css/styles.css' %}" rel="stylesheet" />
+
+    {% bootstrap_javascript jquery='slim' %}
+
+</head>
+<body>
+  <header>
+    <div class="px-3 py-2 text-bg-dark">
+      <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+          <div class="row">
+            <div class="col-12">
+              <h1 class="text-center text-uppercase mb-5">Chernecky Vadim</h1>
+            </div>
+          </div>
+
+          <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
+            <li>
+              <a href="{% url 'home' %}" class="nav-link text-secondary">
+
+                Главная
+              </a>
+            </li>
+            <li>
+
+              <div class="dropdown">
+                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-expanded="false">
+                  Категории
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+
+                    <!--{% show_categories cat_selected=cat_selected %}-->
+                  {% for c in cats %}
+                  {% if c.video__count > 0%}  <!--показывать категорию, если она имеет хотя бы 1 пост-->
+                      {% if c.pk == cat_selected %}
+                          <li>{{c.name}}</li>
+                      {% else %}
+                          <li><a href="{{ c.get_absolute_url }}">{{ c.name }}</a></li>
+                      {% endif %}
+                  {% endif %}
+                  {% endfor %}
+
+                </ul>
+              </div>
+
+            </li>
+            <li>
+              <a href="{% url 'connection' %}" class="nav-link text-white">
+
+                Связь
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="px-3 py-2 border-bottom mb-3">
+      <div class="container d-flex flex-wrap justify-content-center">
+        <form class="col-12 col-lg-auto mb-2 mb-lg-0 me-lg-auto" role="search">
+          <input type="search" class="form-control" placeholder="Поиск..." aria-label="Поиск">
+        </form>
+      </div>
+    </div>
+  </header>
+
+
+{% block content %}
+
+{% endblock %}
+<!--пагинация-->
+{% if page_obj.has_other_pages %}
+<nav>
+    <ul>
+        {% if page_obj.has_previous %}
+        <li>
+            <a href="?page={{ page_obj.previous_page_number }}">&lt;</a>
+        </li>
+        {% endif %}
+
+        {% for p in paginator.page_range %}
+        {% if page_obj.number == p %}
+        <li>{{ p }}</li>
+        {% elif p >= page_obj.number|add:-2 and p <= page_obj.number|add:2 %}
+        <li>
+            <a href="?page={{ p }}">{{ p }}</a>
+        </li>
+        {% endif %}
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+        <li>
+            <a href="?page={{ page_obj.next_page_number }}">&gt;</a>
+        </li>
+        {% endif %}
+    </ul>
+</nav>
+{% endif %}
+
+
+<!--скрипты bootstrap-->
+<!--<script src="static/video_clips/bootstrap/js/bootstrap.bundle.min.js"></script>-->
+
+</body>
+</html>

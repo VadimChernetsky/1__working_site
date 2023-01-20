@@ -1,0 +1,18 @@
+{% extends 'video_clips/base.html' %}
+{% load static %}
+{% load thumbnail %}
+{% load bootstrap4 %}
+{% load vc_tags %}
+{% block content %}
+{% block title %}{{title}}{% endblock %}
+<h1>{{post.title}}</h1>
+
+
+{% if post.image %}
+<p><img src="{% thumbnail post.image 'default' %}"></p>
+{% endif %}
+
+
+
+
+{% endblock %}
