@@ -9,24 +9,130 @@
 
 {% block title %}{{title}}{% endblock %}
 {% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col d-flex flex-wrap justify-content-end">
+
+            <div class="d7 container-fluid dmq">
+
+                    <form>
+                        <div class="row">
+                            <div class="col xcd">
+                            {{ form }}
+                            </div>
+                            <div class="col xcd nwd">
+                            <button type="submit">
+                                <div class="gradient-border" id="box">
+                                <img src="{% static 'video_clips/icons/poisk1.svg' %}" class="zaq">
+                                </div>
+                            </button>
+                            </div>
+                        </div>
+                    </form>
+
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+        <div class="px-2">
 
 
-<ul>
-    {% for p in posts %}
-    <li>
-        <h2>{{p.title}}</h2>
-        {% if p.image %}
-        <p><img src="{% thumbnail p.image 'default' %}"></p>
-        {% endif %}
-        <p>{{p.price}}</p>
-        <p>{{p.url}}</p>
-        <p>{{p.categ}}</p>
-        <p><a href="{{ p.get_absolute_url }}"> Смотреть пост</a></p>
-        <hr>
-    </li>
-    {% endfor %}
-</ul>
+            <ul class="param">
+                {% for p in posts %}
+                <li class="pt-4">
+                    <div class="d-flex flex-wrap justify-content-center alr">
+                        <ul class="param">
+                            <li><h3 class="text-center vjd">{{p.title}}</h3></li>
+                            <li><img src="{% static 'video_clips/icons/x8.png'%}" width="324" height="45" class="val"></li>
+                        </ul>
+                    </div>
+                    {% if p.image %}
+                    <div class="d-flex flex-wrap justify-content-center">
+                        <img src="{% thumbnail p.image 'big' %}" class="round">
+                        <img src="{% static 'video_clips/icons/ava2.png'%}" width="145" height="145" class="vhm">
+                    </div>
+                    {% endif %}
+                    <div>
+                        <ul class="param">
+                            <li>
+                                <H5 class="text-center pt-2 nnk">Жанр: {{p.categ}}</H5>
+                            </li>
+                            <li class="d-flex flex-wrap justify-content-center">
+                                <img src="{% static 'video_clips/icons/x5.png'%}" width="320" height="32">
+                            </li>
+                        </ul>
+                    </div>
 
+                    <div class="d-flex justify-content-center nfn">
+                        <img src="{% static 'video_clips/icons/kn_l.svg' %}" width="50" height="50" class="cle1">
+                        <button type="button" class="btn btn-primary anim-bg-gradient bal">
+                            <a href="#" class="nav-link jlm" data-bs-toggle="modal" data-bs-target="#video_modal"
+                               data-bs-video-url={{p.url}}>
+                               <img src="{% static 'video_clips/icons/play1.png'%}" class="agn">
+                            </a>
+                        </button>
+                            <div class="modal fade" id="video_modal" tabindex="-1" aria-labelledby="videoInterview" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                                    <div class="modal-content text-bg-dark">
+                                        <div class="modal-header">
+                                            <div class="container-fluid">
+                                                <div class="row">
+                                                    <div class="col d-flex flex-wrap justify-content-end">
+                                                        <img src="{% static 'video_clips/icons/mod_l.png' %}" width="60" height="60">
+                                                    </div>
+                                                    <div class="col d-flex flex-wrap justify-content-center">
+                                                        <img src="{% static 'video_clips/icons/mod_c.png'%}" width="73" height="60">
+                                                    </div>
+                                                    <div class="col d-flex flex-wrap justify-content-start">
+                                                        <img src="{% static 'video_clips/icons/mod_p.png' %}" width="60" height="60">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="modal-body">
+                                            <div class='embed-container'><iframe src="" width="640" height="360" frameborder="0" allowfullscreen="1" allow="autoplay; encrypted-media; fullscreen; picture-in-picture">
+                                            </iframe></div>
+                                        </div>
+
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary anim-bg-gradient1 bal1" data-bs-dismiss="modal">
+                                                <img src="{% static 'video_clips/icons/close.png'%}" class="agn1">
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <img src="{% static 'video_clips/icons/kn_p.svg' %}" width="50" height="50" class="cle2">
+                    </div>
+                    <div class="pb-2">
+                        <ul class="param">
+                            <li class="d-flex flex-wrap justify-content-center">
+                                <img src="{% static 'video_clips/icons/x4.png'%}" width="320" height="32" class="x4">
+                            </li>
+                            <li>
+                                <div class="section fgn">
+                                    {% for g in p.additionalimage_set.all %}
+                                        {% if g.image %}
+                                        <div class="section_item"><img src="{% thumbnail g.image 'default' %}"></div>
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                            </li>
+                            <li class="d-flex flex-wrap justify-content-center">
+                                <img src="{% static 'video_clips/icons/x3.png'%}" width="320" height="32" class="x3">
+                            </li>
+
+                        </ul>
+                    </div>
+
+                </li>
+                {% endfor %}
+            </ul>
+
+        </div>
+
+</div>
 
 {% endblock %}
-

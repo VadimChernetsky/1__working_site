@@ -1,4 +1,5 @@
 {% extends 'video_clips/base.html' %}
+{% load static %}
 {% load bootstrap4 %}
 {% bootstrap_javascript jquery='slim' %}
 
@@ -8,23 +9,69 @@
 
 {% block content %}
 
-<p>Связь со мной</p>
+<div class="container-fluid ser">
 
-<!--пагинация функии 'connection'
+        <div class="ndl d-flex justify-content-center">
+            <ul class="param">
 
-{% for contact in page_obj %}
-<p>{{ contact }}</p>
-{% endfor %}
+                <li class="qkl">
+                    <div class="d-flex">
+                        <img src="{% static 'video_clips/icons/f1.png'%}">
+                        <h3 class="hpb">+375(25)653-04-94</h3>
+                    </div>
+                </li>
+                <li class="qkl">
+                    <div class="d-flex">
+                        <img src="{% static 'video_clips/icons/f2.png'%}">
+                        <h3 class="hpb">chhhhherneckiy@mail.ru</h3>
+                    </div>
+                </li>
+                <li class="qkl">
+                    <div class="d-flex">
+                        <img src="{% static 'video_clips/icons/f5.png'%}">
+                        <h3 class="hpb">vadim_cherneckiy</h3>
+                    </div>
+                </li>
+                <li class="qkl">
+                    <div class="d-flex">
+                        <img src="{% static 'video_clips/icons/f3.png'%}">
+                        <h3 class="hpb">375256530494</h3>
+                    </div>
+                </li>
+                <li class="qkl">
+                    <div class="d-flex">
+                        <img src="{% static 'video_clips/icons/f4.png'%}">
+                        <h3 class="hpb">vadim_chernecky</h3>
+                    </div>
+                </li>
+                <li class="qkl">
+                    <div class="d-flex">
+                        <img src="{% static 'video_clips/icons/f9.png'%}">
+                        <h3 class="hpb">@cherneckyvadim1364</h3>
+                    </div>
+                </li>
+                <li class="qkl">
+                    <div class="d-flex">
+                        <img src="{% static 'video_clips/icons/f6.png'%}">
+                        <h3 class="hpb">VadimChernetsky</h3>
+                    </div>
+                </li>
+                <li class="qkl">
+                    <div class="d-flex">
+                        <img src="{% static 'video_clips/icons/f7.png'%}">
+                        <h3 class="hpb">m.ares</h3>
+                    </div>
+                </li>
+                <li class="qkl">
+                    <div class="d-flex">
+                        <img src="{% static 'video_clips/icons/f8.png'%}">
+                        <h3 class="hpb">vadim_cherneckiy</h3>
+                    </div>
+                </li>
 
-<nav>
-    <ul>
-        {% for p in page_obj.paginator.page_range %}
-        <li>
-            <a href="?page={{ p }}">{{ p }}</a>
-        </li>
-        {% endfor %}
-    </ul>
-</nav>
--->
+            </ul>
+        </div>
+
+</div>
 
 {% endblock %}

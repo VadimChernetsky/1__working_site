@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 import os
 from pathlib import Path
+from .config import host, user, password, db_name, port
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -42,6 +43,8 @@ INSTALLED_APPS = [
     'django_cleanup',
     'easy_thumbnails',
     'bootstrap4',
+    'django_bootstrap_icons',
+
 ]
 
 MIDDLEWARE = [
@@ -80,8 +83,12 @@ WSGI_APPLICATION = 'vchvideo.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': db_name,
+        'USER': user,
+        'PASSWORD': password,
+        'HOST': host,
+        'PORT': port,
     }
 }
 
@@ -124,6 +131,7 @@ STATIC_URL = 'static/'   # префикс URL-адреса для статиче
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')   #путь к общей статической папке, используемой реальным веб-сервером
 STATICFILES_DIRS = []   # список доп. нестандартных путей к статич. файлам, используемых для режима отладки
 
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
@@ -139,6 +147,11 @@ THUMBNAIL_ALIASES = {
             'size': (96, 96),
             'crop': 'scale',
         },
+        'big': {
+            'size': (140, 140),
+            'crop': 'scale',
+        },
     },
 }
 THUMBNAIL_BASEDIR = 'thumbnails'
+# BS_ICONS_CUSTOM_PATH = 'icons'

@@ -1,0 +1,389 @@
+.animate-ul{margin-top: 10px;margin-bottom: 10px;display: flex; margin-left: 0; padding-left: 0;}
+.animate-ul li{list-style:none;font-size:5em;font-family:fantasy;color:#484848;animation:ani 1.2s linear infinite}
+.animate-ul li:nth-child(1){animation-delay:.2s}
+.animate-ul li:nth-child(2){animation-delay:.6s}
+.animate-ul li:nth-child(3){animation-delay:.8s}
+.animate-ul li:nth-child(4){animation-delay:1s}
+.animate-ul li:nth-child(5){animation-delay:1.4s}
+.animate-ul li:nth-child(6){animation-delay:1.8s}
+.animate-ul li:nth-child(7){animation-delay:1.12s}
+@keyframes ani {
+0%{color:#44848;text-shadow:none}
+90%{color:#44848;text-shadow:none}
+100%{color:#fff900;text-shadow:0 0 7px #fff900,0 0 70px #fff123}
+}
+}
+
+
+.section {
+  display: flex;
+  justify-content: space-between;
+  overflow-x: auto;
+  width: 500px;
+  margin: 50px auto;
+  scroll-snap-type: x mandatory;
+}
+
+<div class="section">
+  <div class="section_item item1">Item 1</div>
+  <div class="section_item item2">Item 2</div>
+  <div class="section_item item3">Item 3</div>
+  <div class="section_item item4">Item 4</div>
+  <div class="section_item item5">Item 5</div>
+</div>
+
+.section_item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 0 0 300px;
+  height: 250px;
+  font-size: 50px;
+  scroll-snap-align: start;
+}
+
+background: linear-gradient(60deg, #ff0000, #f37055, #fff100, #a166ab, ##2219b2, #1098ad, #07b39b, #6fba82);
+background: linear-gradient(60deg, #ff0000, #ff0000, #1240ab, #1240ab, #ffff00, #ffff00);
+
+#box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+}
+.gradient-border {
+  --borderWidth: 3px;
+  background: #1D1F20;
+  position: relative;
+  border-radius: var(--borderWidth);
+}
+.gradient-border:after {
+  content: '';
+  position: absolute;
+  top: calc(-1 * var(--borderWidth));
+  left: calc(-1 * var(--borderWidth));
+  height: calc(100% + var(--borderWidth) * 2);
+  width: calc(100% + var(--borderWidth) * 2);
+  background: linear-gradient(90deg, #ff0000, #000000, #ff0000, #000000, #ff0000, #000000, #ff0000, #000000);
+  border-radius: 50%;
+  z-index: -1;
+  animation: animatedgradient 3s ease alternate infinite;
+  background-size: 300% 300%;
+}
+
+
+@keyframes animatedgradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+#box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+}
+.gradient-border {
+  --borderWidth: 3px;
+  position: relative;
+}
+.gradient-border:after {
+  content: '';
+  position: absolute;
+  top: calc(-1 * var(--borderWidth));
+  left: calc(-1 * var(--borderWidth));
+  height: calc(100% + var(--borderWidth) * 2);
+  width: calc(100% + var(--borderWidth) * 2);
+  background: linear-gradient(0deg, #ff0000, #000000);
+  border-radius: 50%;
+  z-index: -1;
+}
+
+.animated-word {
+  font-family: Helvetica;  /*шрифт*/
+  letter-spacing: 0.4em;   /*межбуквенное расстояние*/
+  font-weight: 600;    /*начертание шрифта*/
+  font-size: 10px;    /*размер шрифта, высота*/
+  text-align: center;      /*расположение в блоке*/
+  color: #202125;      /*цвет*/
+  cursor: pointer;     /*тип курсора, при наведениии мышки на элемент*/
+  max-width:20px;    /*ширина элемента*/
+  width: 100%;         /*ширина*/
+  outline: 1px solid;  /*доп рамка вокруг элемента, за пределами его блока*/
+  outline-color: rgba(71, 126, 232,0.5);   /*цвет внешней границы элемента*/
+  outline-offset: 20px;   /*расстояние между рамкой и границей элемента border*/
+  transition: all 600ms cubic-bezier(0.2, 0, 0, 0.8);    /*переходное состояние между двумя состояниями элемента*/
+}
+
+.animated-word:hover {
+  color: rgba(71, 126, 232, 0.7);
+  outline-color: rgba(71, 126, 232, 0);
+  outline-offset: 20px;
+}
+
+.xxr {
+    height: 100%;    /*высота*/
+    display: flex;   /*внутренние div-ы выстраиваются в ряд колонками одинаковой высоты, независимо от содержимого*/
+    align-items: center;    /*выравнивает flex-элементы*/
+    justify-content: center;     /*распределение пространства между и вокруг элементов*/
+}
+
+<div class="justify-content-lg-start py-1">
+        <ul class="nav col-12 col-lg-auto justify-content-center">
+          <li class="text-muted text-center">&copy; 2023 Cherneckiy</li>
+          <li class="ms-4"><a class="text-muted" href="https://t.me/vadim_chernecky">
+              <img src="{% static 'video_clips/icons/telegram_2.svg' %}" width="23" height="23" class="bi"></a></li>
+          <li class="ms-4"><a class="text-muted" href="https://www.instagram.com/accounts/login/?next=/vadim_cherneckiy/">
+              <img src="{% static 'video_clips/icons/instagram_2.svg' %}" width="23" height="23" class="bi"></a></li>
+          <li class="ms-4"><a class="text-muted" href="https://vk.com/m.ares">
+              <img src="{% static 'video_clips/icons/vk_2.svg' %}" width="23" height="23" class="bi"></a></li>
+          <li class="ms-4"><a class="text-muted" href="https://github.com/VadimChernetsky">
+              <img src="{% static 'video_clips/icons/github_1.svg' %}" width="23" height="23" class="bi"></a></li>
+        </ul>
+    </div>
+
+.anim-bg-gradient {
+  background: linear-gradient(120deg, darkmagenta, crimson, orange);
+  background-size: 200% 100%;
+  background-position: 100% 0;
+  transition: background-position .5s;
+  border: 0;
+  padding: 10px 15px;
+  color: white;
+
+  border-radius: 10px;
+  cursor: pointer;
+}
+.anim-bg-gradient:hover {
+  background-position: 0 0;
+}
+<li><img src="{% static 'video_clips/icons/x1.png'%}" width="380" height="38" class="val"></li>
+
+list_categories.html
+{% for c in cats %}
+    {% if c.pk == cat_selected %}
+        <li class="dropdown-item">{{ c.name }}</li>
+    {% else %}
+        <li><a class="dropdown-item" href="{{ c.get_absolute_url }}">{{c.name}}</a></li>
+{% endif %}
+{% endfor %}
+
+<h1>{{post.title}}</h1>
+{% if post.image %}
+<p><img src="{% thumbnail post.image 'default' %}"></p>
+{% endif %}
+<p>{{post.content}}</p>
+{% for q in post.additionalimage_set.all %}
+{% if q.image %}
+<p><img src="{% thumbnail q.image 'default' %}"></p>
+{% endif %}
+{% endfor %}
+<p>{{post.url}}</p>
+<p>{{post.categ}}</p>
+<p>Цена: {{post.price}}</p>
+
+     <div class="container">
+      <div class="row">
+          <div class="col-12">
+            <h1 class="text-center">SPACESHIP</h1>
+            <h2 class="text-center">Apollo 3000</h2>
+             <div class="itd_play" data-bs-toggle="modal" data-bs-target="#exampleModal">
+               <div class="itd_traingle"></div>
+             </div>
+
+          </div>
+        </div>
+      </div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content bg3">
+      <div class="modal-header">
+        <h5 class="modal-title color2" id="exampleModalLabel">ON MY WAY</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+      </div>
+      <div class="modal-body">
+        <!--Видео с ютуба-->
+        <div class='embed-container'><iframe src='https://www.youtube.com/embed//MamH-Jy3j8s' frameborder='0' allowfullscreen></iframe></div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<script src="{% static 'video_clips/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+    <!-- Модальное окно - вызывается с разным содержимым, в зависимости от того, какая кнопка была нажата -->
+    <div class="modal fade" id="video_modal" tabindex="-1" aria-labelledby="videoInterview" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body p-0">
+                    <iframe width="100%" height="450" src="" class="d-block" title="интервью с клиентами"
+                        frameborder="0" allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2 class="my-4">Разные видео</h2>
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-3">
+                <div class="card bg-light">
+                    <div class="card-body text-center">
+                        <img src="https://randomuser.me/api/portraits/men/1.jpg" class="rounded-circle mb-3" alt="" />
+                        <h5 class="card-title mb-3">Видео 1</h5>
+                        <!-- аттрибут data-bs-video-url - содержит ссылу на видео -->
+                        <a href="#" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#video_modal"
+                            data-bs-video-url="https://www.youtube.com/embed/tLcnJEMnlTs">Смотреть</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="card bg-light">
+                    <div class="card-body text-center">
+                        <img src="https://randomuser.me/api/portraits/men/2.jpg" class="rounded-circle mb-3"
+                            alt="" />
+                        <h5 class="card-title mb-3">Видео 2</h5>
+                        <a href="#" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#video_modal"
+                            data-bs-video-url='width="560" height="315" src="https://www.youtube.com/embed/Iq9O9rnE3Uk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen'>Смотреть</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="card bg-light">
+                    <div class="card-body text-center">
+                        <img src="https://randomuser.me/api/portraits/men/10.jpg" class="rounded-circle mb-3" alt="" />
+                        <h5 class="card-title mb-3">Видео 1</h5>
+                        <a href="#" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#video_modal"
+                            data-bs-video-url="https://www.youtube.com/embed/tLcnJEMnlTs">Смотреть</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="card bg-light">
+                    <div class="card-body text-center">
+                        <img src="https://randomuser.me/api/portraits/men/20.jpg" class="rounded-circle mb-3"
+                            alt="" />
+                        <h5 class="card-title mb-3">Видео 2</h5>
+                        <a href="#" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#video_modal"
+                            data-bs-video-url="https://www.youtube.com/embed/YsoghPlMQdY">Смотреть</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+        crossorigin="anonymous"></script>
+
+    <script>
+        'use strict'
+
+
+        function OpenVideoModal(htmlId, htmlDataAttr) {
+
+            const exampleModal = document.getElementById(htmlId);
+            let iframe;
+
+            // событие, возникающее при отображении модального окна
+            exampleModal.addEventListener('show.bs.modal', function (event) {
+                // Кнопка, которая вызвала данный модал
+                const button = event.relatedTarget;
+                // Вытаскиваем данные из аттрибута data-bs-video-url*
+                // в нашем случаем там содержится ссылка на видео
+                const videoUrl = button.getAttribute(htmlDataAttr);
+                // для отладки - в консоль
+                console.log(videoUrl)
+
+                // ссылка на фрейм с видео в разметке
+                iframe = exampleModal.querySelector('.modal-body iframe');
+
+                // загружаем видео в фрейм
+                iframe.src = videoUrl;
+            });
+
+            // событие, возникающее при закрытии модального окна
+            exampleModal.addEventListener('hide.bs.modal', function (event) {
+                // удаляем ссылку на источник видео - останавливаем видео
+                iframe.src = '';
+            });
+        }
+
+    </script>
+
+<script>
+
+function OpenVideoModal(htmlId, htmlDataAttr) {
+    // событие, возникающее при закрытии модального окна
+    const exampleModal = document.getElementById('exampleModal')
+    exampleModal.addEventListener('hide.bs.modal', event => {
+        // удаляем ссылку на источник видео - останавливаем видео
+        iframe.src = '';
+    });
+}
+
+</script>
+
+<p class="text-center nfn"><button class="anim-bg-gradient"><a class="nav-link mnm" href="{{ p.get_absolute_url }}">Смотреть пост</a></button></p>
+
+border: 2px solid #658521;
+
+<div class="modal-header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col d-flex flex-wrap justify-content-end">
+                <img src="{% static 'video_clips/icons/md_l.png' %}" width="71" height="60">
+            </div>
+            <div class="col d-flex flex-wrap justify-content-center">
+                <img src="{% static 'video_clips/icons/md_c.png'%}" width="47" height="50" class="lfi">
+            </div>
+            <div class="col d-flex flex-wrap justify-content-start">
+                <img src="{% static 'video_clips/icons/md_p.png' %}" width="71" height="60">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal-header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col d-flex flex-wrap justify-content-end">
+                <img src="{% static 'video_clips/icons/md_l.png' %}" width="59" height="50">
+            </div>
+            <div class="col d-flex flex-wrap justify-content-center">
+                <img src="{% static 'video_clips/icons/md_c.png'%}" width="37" height="40" class="lfi">
+            </div>
+            <div class="col d-flex flex-wrap justify-content-start">
+                <img src="{% static 'video_clips/icons/md_p.png' %}" width="59" height="50">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid text-bg-dark pt-3 bgh">
+      <div class="row">
+          <div class="col d-flex justify-content-end">
+             <img src="{% static 'video_clips/icons/gl_l.png' %}" width="82" height="100" class="amu">
+          </div>
+          <div class="col d-flex justify-content-center">
+             <img src="{% static 'video_clips/icons/gl_c1.png'%}" width="150" height="150" >
+          </div>
+          <div class="col d-flex justify-content-start">
+             <img src="{% static 'video_clips/icons/gl_p.png' %}" width="82" height="100" class="amu">
+          </div>
+      </div>
+    </div>

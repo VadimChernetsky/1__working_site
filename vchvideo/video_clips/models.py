@@ -33,7 +33,7 @@ class Video(models.Model):
         verbose_name_plural = 'Все публикации'
         verbose_name = 'Публикация'
         # ordering = ['-created_dt']
-        ordering = ['id']
+        ordering = ['-id']
 
 
 # доп иллюстрации

@@ -1,10 +1,15 @@
+from django.core.paginator import Paginator
 from django.db.models import Count
 from django.http import HttpResponse, HttpResponseNotFound, Http404
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Video, Category, AdditionalImage
-from django.views.generic import ListView, DeleteView
-from .utils import DataMixin
+from django.views.generic.detail import DetailView
+from django.db.models import Q
 
+from .models import Video, Category, AdditionalImage
+from django.views.generic import ListView
+from .utils import DataMixin
+from .forms import SearchForm
+from django.db.models import Count
 
 # # 1 содержимое главной страницы
 # def index(request):
@@ -17,22 +22,24 @@ from .utils import DataMixin
 #     }
 #     return render(request, 'video_clips/index.html', context=context)
 
-class VideoList(DataMixin, ListView):
-    # paginate_by = 2
-    model = Video
-    template_name = 'video_clips/index.html'
-    context_object_name = 'posts'
+# class VideoList(DataMixin, ListView):
+#     # paginate_by = 2
+#     model = Video
+#     template_name = 'video_clips/index.html'
+#     context_object_name = 'posts'
+#
+#     def get_context_data(self, *, object_list=None, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         # context['title'] = 'Главная станица'
+#         # context['cat_selected'] = 0
+#
+#         c_def = self.get_user_context(title='Главная страница')
+#         context = dict(list(context.items()) + list(c_def.items()))
+#         return context
+#
+#     def get_queryset(self):
+#         return Video.objects.filter(is_active=True)
 
-    def get_context_data(self, *, object_list=None, **kwargs):
-        context = super().get_context_data(**kwargs)
-        # context['title'] = 'Главная станица'
-        # context['cat_selected'] = 0
-        c_def = self.get_user_context(title='Главная страница')
-        context = dict(list(context.items()) + list(c_def.items()))
-        return context
-
-    def get_queryset(self):
-        return Video.objects.filter(is_active=True)
 
 
 # содержание страницы связи со мной
@@ -56,10 +63,13 @@ def connection(request):
     return render(request, 'video_clips/connection.html', context=context)
 
 
+
 #страница перенаправление ошибки
 def pageNotFound(request, exception):
     '''переопределение ошибки 404'''
     return HttpResponseNotFound('<h1>Страница не найдена</h1>')
+    # return HttpResponseNotFound('<img src="icons/ava1.png">')
+
 
 
 # #страница поста
@@ -73,7 +83,7 @@ def pageNotFound(request, exception):
 #     }
 #     return render(request, 'video_clips/post.html', context)
 
-class ShowPost(DataMixin, DeleteView):
+class ShowPost(DataMixin, DetailView):
     model = Video
     template_name = 'video_clips/post.html'
     slug_url_kwarg = 'post_slug'     #по умолчанию просто 'slug'
@@ -107,7 +117,7 @@ class ShowPost(DataMixin, DeleteView):
 class VideoCategory(DataMixin, ListView):
     # paginate_by = 2
     model = Video
-    template_name = 'video_clips/index.html'
+    template_name = 'video_clips/categ.html'
     context_object_name = 'posts'
     allow_empty = False
 
@@ -122,3 +132,28 @@ class VideoCategory(DataMixin, ListView):
                                       cat_selected=context['posts'][0].categ_id)
         context = dict(list(context.items()) + list(c_def.items()))
         return context
+
+def v_search(request):
+    # categ = get_object_or_404(Category, pk=pk)
+    posts = Video.objects.filter(is_active=True)
+    cats = Category.objects.annotate(Count('video'))  # выводить список категорий у которых есть посты
+    if 'keyword' in request.GET:
+        keyword = request.GET['keyword']
+        q = Q(title__icontains=keyword) | Q(content__icontains=keyword)   # __icontains без учета регистра
+        posts = posts.filter(q)
+    else:
+        keyword = ''
+    form = SearchForm(initial={'keyword': keyword})
+    paginator = Paginator(posts, 3)
+    # if 'page' in request.GET:
+    #     page_number = request.Get['page']  # получаем номер текущей страницы
+    # else:
+    #     page_number = 1
+    # page = paginator.get_page(page_number)  # список элементов текущей страницы
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    context = {'form': form, 'cats': cats, 'page_obj': page_obj, 'posts': page_obj.object_list}
+    if 'cat_selected' not in context:
+        context['cat_selected'] = 0
+    return render(request, 'video_clips/index.html', context)
