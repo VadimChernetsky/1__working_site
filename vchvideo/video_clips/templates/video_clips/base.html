@@ -1,248 +1,258 @@
 {% load static %}
 {% load bootstrap4 %}
 {% load vc_tags %}
-{% load bootstrap_icons %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!--мета тэг, для адаптивной верстки-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="{% static 'video_clips/images/favicon.ico' %}" type="image/x-icon">
-    <!--css bootstrap-->
+    <link rel="shortcut icon" href="{% static 'video_clips/images/favicon3.ico' %}" type="image/x-icon">
     <link rel="stylesheet" href="{% static 'video_clips/bootstrap/css/bootstrap.min.css' %}" type="text/css">
-    <!--подключаем иконки-->
-    <link rel="stylesheet" href="{% static 'video_clips/css/fontello.css' %}">
     <title>{% block title %}{% endblock %}</title>
-    <!--свои стили после bootstrap, они буду иметь приоритет-->
-    <link type="text/css" href="{% static 'video_clips/styles38.css' %}" rel="stylesheet">
-
+    <link type="text/css" href="{% static 'video_clips/styles.css' %}" rel="stylesheet">
     {% bootstrap_javascript jquery='slim' %}
-
 </head>
-<body class="text-bg-dark">
-  <div class="wrapper">
-      <div class="content">
-          <header>
-              <div class="container-fluid text-bg-dark border-bottom">
-                  <div class="row">
-                      <div class="col d-flex flex-wrap justify-content-center mx-2">
-                          <a href="{% url 'home' %}" class="nav-link text-secondary">
-                              <ul class="animate-ul">
-                                  <li><H3><img src="{% static 'video_clips/icons/k_camera1.svg' %}" width="25" height="25" class="pb-1"></H3></li>
-                                  <li class="ms-2"><H3>V</H3></li>
-                                  <li class="ms-2"><H3>I</H3></li>
-                                  <li class="ms-2"><H3>D</H3></li>
-                                  <li class="ms-2"><H3>E</H3></li>
-                                  <li class="ms-2"><H3>O</H3></li>
-                                  <li class="ms-2"><H3><img src="{% static 'video_clips/icons/k_camera2.svg' %}" width="25" height="25" class="pb-1"></H3></li>
-                              </ul>
-                          </a>
-                      </div>
-                      <div class="col gap-5 d-flex flex-wrap justify-content-center mx-2">
 
-                              <div class="dropdown">
-                                  <a class="nav-link text-secondary" role="button" data-toggle="dropdown" aria-expanded="false">
-                                      <ul class="animate-ul">
-                                          <li><H3><img src="{% static 'video_clips/icons/k_strela.svg' %}" width="25" height="25" class="pb-1"></H3></li>
-                                          <li class="ms-2"><H3>Ж</H3></li>
-                                          <li class="ms-2"><H3>А</H3></li>
-                                          <li class="ms-2"><H3>Н</H3></li>
-                                          <li class="ms-2"><H3>Р</H3></li>
-                                          <li class="ms-2"><H3><img src="{% static 'video_clips/icons/k_strela.svg' %}" width="25" height="25" class="pb-1"></H3></li>
-                                      </ul>
-                                  </a>
+<body class="back">
+    <div class="wrapper">
+        <div class="content xtr">
+            <header>
+                <div class="container-fluid xtr1 wer">
+                    <div class="row">
+                        <div class="col d-flex flex-wrap justify-content-center mx-2">
+                            <a href="{% url 'home' %}" class="nav-link text-secondary">
+                                <ul class="animate-ul">
+                                    <li><H3><img src="{% static 'video_clips/icons/k_camera1.svg' %}"
+                                                 width="25" height="25" class="pb-1"></H3>
+                                    </li>
+                                    <li class="ms-2"><H3>V</H3></li>
+                                    <li class="ms-2"><H3>I</H3></li>
+                                    <li class="ms-2"><H3>D</H3></li>
+                                    <li class="ms-2"><H3>E</H3></li>
+                                    <li class="ms-2"><H3>O</H3></li>
+                                    <li class="ms-2"><H3><img src="{% static 'video_clips/icons/k_camera2.svg' %}"
+                                                              width="25" height="25" class="pb-1"></H3>
+                                    </li>
+                                </ul>
+                            </a>
+                        </div>
+                        <div class="col gap-5 d-flex flex-wrap justify-content-center mx-2">
+                            <div class="dropdown">
+                                <a class="nav-link text-secondary" role="button" data-toggle="dropdown"
+                                    aria-expanded="false">
+                                    <ul class="animate-ul">
+                                        <li><H3><img src="{% static 'video_clips/icons/k_strela.svg' %}"
+                                                     width="25" height="25" class="pb-1"></H3>
+                                        </li>
+                                        <li class="ms-2"><H3>J</H3></li>
+                                        <li class="ms-2"><H3>E</H3></li>
+                                        <li class="ms-2"><H3>N</H3></li>
+                                        <li class="ms-2"><H3>R</H3></li>
+                                        <li class="ms-2"><H3>E</H3></li>
+                                        <li class="ms-2"><H3><img src="{% static 'video_clips/icons/k_strela.svg' %}"
+                                                                  width="25" height="25" class="pb-1"></H3>
+                                        </li>
+                                    </ul>
+                                </a>
+                                <ul class="dropdown-menu text-center gradient6">
+                                <!--{% show_categories cat_selected=cat_selected %}-->
+                                {% for c in cats %}
+                                    <!--показывать категорию, если она имеет хотя бы 1 пост-->
+                                    {% if c.video__count > 0%}
+                                        {% if c.pk == cat_selected %}
+                                        <li class="dropdown-item gradient6">
+                                            <ul class="caw justify-content-center">
+                                                <li><img src="{% static 'video_clips/icons/kol_ch1.svg' %}"
+                                                         width="24" height="24" class="rln">
+                                                </li>
+                                                <li class="ms-2"><h5 class="py-1 dmy2">{{ c.name }}</h5></li>
+                                                <li class="ms-2"><img src="{% static 'video_clips/icons/kol_k.svg' %}"
+                                                                      width="24" height="24" class="rln">
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        {% else %}
+                                        <li>
+                                            <a class="dropdown-item gradient5" href="{{ c.get_absolute_url }}">
+                                                <ul class="caw justify-content-center">
+                                                    <li><img src="{% static 'video_clips/icons/kol_ch1.svg' %}"
+                                                             width="24" height="24" class="rln">
+                                                    </li>
+                                                    <li class="ms-2"><h5 class="py-1 dmy1">{{ c.name }}</h5></li>
+                                                    <li class="ms-2"><img src="{% static 'video_clips/icons/kol_k.svg' %}"
+                                                                          width="24" height="24" class="rln">
+                                                    </li>
+                                                </ul>
+                                            </a>
+                                        </li>
+                                        {% endif %}
+                                    {% endif %}
+                                {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col d-flex flex-wrap justify-content-center mx-2">
+                            <a href="{% url 'connection' %}" class="nav-link text-secondary">
+                                <ul class="animate-ul">
+                                    <li><H3><img src="{% static 'video_clips/icons/k_pero1.svg' %}"
+                                                 width="25" height="25" class="pb-1"></H3></li>
+                                    <li class="ms-2"><H3>C</H3></li>
+                                    <li class="ms-2"><H3>O</H3></li>
+                                    <li class="ms-2"><H3>N</H3></li>
+                                    <li class="ms-2"><H3>T</H3></li>
+                                    <li class="ms-2"><H3>A</H3></li>
+                                    <li class="ms-2"><H3>C</H3></li>
+                                    <li class="ms-2"><H3>T</H3></li>
+                                    <li class="ms-2"><H3>S</H3></li>
+                                    <li class="ms-2"><H3><img src="{% static 'video_clips/icons/k_pero.svg' %}"
+                                                              width="25" height="25" class="pb-1"></H3></li>
+                                </ul>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="container-fluid pt-3">
+                        <div class="d-flex justify-content-center">
+                            <img src="{% static 'video_clips/icons/gl_l.png' %}"
+                                 width="82" height="100" class="amu">
+                            <img src="{% static 'video_clips/icons/gl_c1.png'%}"
+                                width="150" height="150" class="amu1">
+                            <img src="{% static 'video_clips/icons/gl_p.png' %}"
+                                 width="82" height="100" class="amu">
+                        </div>
+                </div>
+            </header>
 
-                                          <ul class="dropdown-menu text-center lbe">
-                                              <!--{% show_categories cat_selected=cat_selected %}-->
-                                          {% for c in cats %}
-                                              {% if c.video__count > 0%}  <!--показывать категорию, если она имеет хотя бы 1 пост-->
-                                                  {% if c.pk == cat_selected %}
-                                                  <li class="dropdown-item lbe2">
-                                                      <ul class="caw justify-content-center">
-                                                          <li><img src="{% static 'video_clips/icons/kol_z_l.svg' %}" width="24" height="24" class="rln"></li>
-                                                          <li class="ms-2"><h5 class="py-1 dmy2">{{ c.name }}</h5></li>
-                                                          <li class="ms-2"><img src="{% static 'video_clips/icons/kol_z_p.svg' %}" width="24" height="24" class="rln"></li>
-                                                      </ul>
-                                                  </li>
-                                                  {% else %}
-                                                  <li><a class="dropdown-item lbe1" href="{{ c.get_absolute_url }}">
-                                                          <ul class="caw justify-content-center">
-                                                              <li><img src="{% static 'video_clips/icons/kol_ch.svg' %}" width="24" height="24" class="rln"></li>
-                                                              <li class="ms-2"><h5 class="py-1 dmy1">{{ c.name }}</h5></li>
-                                                              <li class="ms-2"><img src="{% static 'video_clips/icons/kol_k.svg' %}" width="24" height="24" class="rln"></li>
-                                                          </ul>
-                                                      </a>
-                                                  </li>
-                                                  {% endif %}
-                                              {% endif %}
-                                          {% endfor %}
-                                          </ul>
-
-                              </div>
-
-                      </div>
-                      <div class="col d-flex flex-wrap justify-content-center mx-2">
-                          <a href="{% url 'connection' %}" class="nav-link text-secondary">
-                              <ul class="animate-ul">
-                                  <li><H3><img src="{% static 'video_clips/icons/k_pero1.svg' %}" width="25" height="25" class="pb-1"></H3></li>
-                                  <li class="ms-2"><H3>К</H3></li>
-                                  <li class="ms-2"><H3>О</H3></li>
-                                  <li class="ms-2"><H3>Н</H3></li>
-                                  <li class="ms-2"><H3>Т</H3></li>
-                                  <li class="ms-2"><H3>А</H3></li>
-                                  <li class="ms-2"><H3>К</H3></li>
-                                  <li class="ms-2"><H3>Т</H3></li>
-                                  <li class="ms-2"><H3>Ы</H3></li>
-                                  <li class="ms-2"><H3><img src="{% static 'video_clips/icons/k_pero.svg' %}" width="25" height="25" class="pb-1"></H3></li>
-                              </ul>
-                          </a>
-                      </div>
+            {% block content %}
 
 
+            {% endblock %}
+            <!--пагинация-->
+            {% if page_obj.has_other_pages %}    <!--выводить пагинацию, если страниц больше чем 1-->
+            <nav>
+                <ul class="nav col-lg-auto justify-content-center lak">
+                    {% if page_obj.has_previous %}
+                    <li class="ms-1">
+                        <a href="?page={{ page_obj.previous_page_number }}"
+                           class="nav-link text-secondary">
+                            <img src="{% static 'video_clips/icons/strelka_left1.svg' %}"
+                                 width="23" height="23" class="bi">
+                        </a>
+                    </li>
+                    {% endif %}
 
-                  </div>
-              </div>
-              <div class="container-fluid text-bg-dark pt-3">
+                    {% for p in page_obj.paginator.page_range %}
+                    {% if page_obj.number == p %}
+                    <li class="ms-1 nav-link klg">
+                        {{ p }}
+                    </li>
+                    {% elif p >= page_obj.number|add:-2 and p <= page_obj.number|add:2 %}
+                    <li class="ms-1">
+                        <a href="?page={{ p }}" class="nav-link text-secondary">
+                            <p class="kjx">{{ p }}</p>
+                        </a>
+                    </li>
+                    {% endif %}
+                    {% endfor %}
 
-                      <div class="d-flex justify-content-center">
-                          <img src="{% static 'video_clips/icons/gl_l.png' %}" width="82" height="100" class="amu">
-                         <img src="{% static 'video_clips/icons/gl_c1.png'%}" width="150" height="150" class="amu1">
-                          <img src="{% static 'video_clips/icons/gl_p.png' %}" width="82" height="100" class="amu">
-                      </div>
-
-
-              </div>
-
-          </header>
-
-
-        {% block content %}
-
-
-        {% endblock %}
-        <!--пагинация-->
-        {% if page_obj.has_other_pages %}    <!--выводить пагинацию, если страниц больше чем 1-->
-        <nav>
-            <ul class="nav col-lg-auto justify-content-center lak">
-                {% if page_obj.has_previous %}
-                <li class="ms-1">
-                    <a href="?page={{ page_obj.previous_page_number }}" class="nav-link text-secondary">
-                        <img src="{% static 'video_clips/icons/strelka_left.svg' %}" width="23" height="23" class="bi">
-                    </a>
-                </li>
-                {% endif %}
-
-                {% for p in page_obj.paginator.page_range %}
-                {% if page_obj.number == p %}
-                <li class="ms-1 nav-link klg">
-                    {{ p }}
-                </li>
-                {% elif p >= page_obj.number|add:-2 and p <= page_obj.number|add:2 %}
-                <li class="ms-1">
-                    <a href="?page={{ p }}" class="nav-link text-secondary"><p class="kjx">{{ p }}</p></a>
-                </li>
-                {% endif %}
-                {% endfor %}
-
-                {% if page_obj.has_next %}
-                <li class="ms-1">
-                    <a href="?page={{ page_obj.next_page_number }}" class="nav-link text-secondary">
-                        <img src="{% static 'video_clips/icons/strelka_right.svg' %}" width="23" height="23" class="bi">
-                    </a>
-                </li>
-                {% endif %}
-            </ul>
-        </nav>
-        {% endif %}
-
-    </div>
-    <!--подвал-->
-    <div class="footer text-bg-dark">
-        <footer>
-            <div class="justify-content-lg-start">
-                <ul class="nav col-12 col-lg-auto justify-content-center pt-1">
-                  <li class="text-center pb-1 zfj">&copy; 2023 Cherneckiy</li>
-                  <li class="ms-4">
-                      <a href="https://t.me/vadim_chernecky">
-                          <div class="gradient-border1" id="box1">
-                              <img src="{% static 'video_clips/icons/telegram_2.svg' %}" width="25" height="25" class="lfh">
-                          </div>
-                      </a>
-                  </li>
-                  <li class="ms-4">
-                      <a href="https://www.instagram.com/accounts/login/?next=/vadim_cherneckiy/">
-                          <div class="gradient-border1" id="box2">
-                              <img src="{% static 'video_clips/icons/instagram.svg' %}" width="25" height="25" class="lfh">
-                          </div>
-                      </a>
-                  </li>
-                  <li class="ms-4">
-                      <a class="text-muted" href="https://vk.com/m.ares">
-                          <div class="gradient-border1" id="box3">
-                              <img src="{% static 'video_clips/icons/vk.svg' %}" width="25" height="25" class="lfh">
-                          </div>
-                      </a>
-                  </li>
-                  <li class="ms-4">
-                      <a class="text-muted" href="https://github.com/VadimChernetsky">
-                          <div class="gradient-border1" id="box4">
-                              <img src="{% static 'video_clips/icons/github.svg' %}" width="25" height="25" class="lfh">
-                          </div>
-                      </a>
-                  </li>
+                    {% if page_obj.has_next %}
+                    <li class="ms-1">
+                        <a href="?page={{ page_obj.next_page_number }}"
+                            class="nav-link text-secondary">
+                            <img src="{% static 'video_clips/icons/strelka_right1.svg' %}"
+                                 width="23" height="23" class="bi">
+                        </a>
+                    </li>
+                    {% endif %}
                 </ul>
-            </div>
-        </footer>
+            </nav>
+            {% endif %}
+        </div>
+
+        <div class="footer xtr2">
+            <footer>
+                <div class="justify-content-lg-start">
+                    <ul class="nav col-12 col-lg-auto justify-content-center pt-1">
+                        <li class="text-center pb-1 zfj">&copy; 2023 Cherneckiy</li>
+                        <li class="ms-4">
+                            <a href="https://t.me/vadim_chernecky">
+                                <div class="gradient-border1" id="box1">
+                                    <img src="{% static 'video_clips/icons/telegram_2.svg' %}"
+                                         width="25" height="25" class="lfh">
+                                </div>
+                            </a>
+                        </li>
+                        <li class="ms-4">
+                            <a href="https://www.instagram.com/accounts/login/?next=/vadim_cherneckiy/">
+                                <div class="gradient-border1" id="box2">
+                                    <img src="{% static 'video_clips/icons/instagram.svg' %}"
+                                         width="25" height="25" class="lfh">
+                                </div>
+                            </a>
+                        </li>
+                        <li class="ms-4">
+                            <a class="text-muted" href="https://vk.com/m.ares">
+                                <div class="gradient-border1" id="box3">
+                                    <img src="{% static 'video_clips/icons/vk.svg' %}"
+                                         width="25" height="25" class="lfh">
+                                </div>
+                            </a>
+                        </li>
+                        <li class="ms-4">
+                            <a class="text-muted" href="https://github.com/VadimChernetsky">
+                                <div class="gradient-border1" id="box4">
+                                    <img src="{% static 'video_clips/icons/github.svg' %}"
+                                         width="25" height="25" class="lfh">
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </footer>
+        </div>
+
+        <script src="{% static 'video_clips/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+        <script>
+            'use strict'
+            function OpenVideoModal(htmlId, htmlDataAttr) {
+
+                const videoModal = document.getElementById(htmlId);
+                let iframe;
+
+                // событие, возникающее при отображении модального окна
+                videoModal.addEventListener('show.bs.modal', function (event) {
+                    // Кнопка, которая вызвала данный модал
+                    const button = event.relatedTarget;
+                    // Вытаскиваем данные из аттрибута data-bs-video-url*
+                    // в нашем случаем там содержится ссылка на видео
+                    const videoUrl = button.getAttribute(htmlDataAttr);
+                    // для отладки - в консоль
+                    console.log(videoUrl)
+
+                    // ссылка на фрейм с видео в разметке
+                    iframe = videoModal.querySelector('.modal-body iframe');
+
+                    // загружаем видео в фрейм
+                    iframe.src = videoUrl;
+                });
+
+                // событие, возникающее при закрытии модального окна
+                videoModal.addEventListener('hide.bs.modal', function (event) {
+                    // удаляем ссылку на источник видео - останавливаем видео
+                    iframe.src = '';
+                });
+            }
+        </script>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                // при загрузке страницы - вешаем обработчики на модальное окно
+                OpenVideoModal('video_modal', 'data-bs-video-url');
+            });
+        </script>
+
     </div>
-
-<!--скрипты bootstrap-->
-<!--<script src="static/video_clips/bootstrap/js/bootstrap.bundle.min.js"></script>-->
-<script src="{% static 'video_clips/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-<script>
-        'use strict'
-
-
-        function OpenVideoModal(htmlId, htmlDataAttr) {
-
-            const videoModal = document.getElementById(htmlId);
-            let iframe;
-
-            // событие, возникающее при отображении модального окна
-            videoModal.addEventListener('show.bs.modal', function (event) {
-                // Кнопка, которая вызвала данный модал
-                const button = event.relatedTarget;
-                // Вытаскиваем данные из аттрибута data-bs-video-url*
-                // в нашем случаем там содержится ссылка на видео
-                const videoUrl = button.getAttribute(htmlDataAttr);
-                // для отладки - в консоль
-                console.log(videoUrl)
-
-                // ссылка на фрейм с видео в разметке
-                iframe = videoModal.querySelector('.modal-body iframe');
-
-                // загружаем видео в фрейм
-                iframe.src = videoUrl;
-            });
-
-            // событие, возникающее при закрытии модального окна
-            videoModal.addEventListener('hide.bs.modal', function (event) {
-                // удаляем ссылку на источник видео - останавливаем видео
-                iframe.src = '';
-            });
-        }
-
-    </script>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            // при загрузке страницы - вешаем обработчики на модальное окно
-            OpenVideoModal('video_modal', 'data-bs-video-url');
-        });
-    </script>
-
-</div>
-
 </body>
 </html>

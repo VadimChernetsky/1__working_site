@@ -22,18 +22,21 @@ from django.views.decorators.cache import never_cache
 
 from video_clips.views import pageNotFound
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # path('video_clips/', index),  # 1 http://127.0.0.1:8000/video_clips/
-    # path('categories/', categories),    # 2 http://127.0.0.1:8000/categories/
-    # path('', index),              # 1 http://127.0.0.1:8000/
     path('', include('video_clips.urls')),
 ]
 
+
 if settings.DEBUG:
+    urlpatterns = [
+        path('__debug__/', include('debug_toolbar.urls')),
+    ] + urlpatterns
+
     urlpatterns.append(path('static/<path:path>', never_cache(serve)))
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
-# обработчик для страницы 404
+'''обработчик для страницы 404'''
 handler404 = pageNotFound
