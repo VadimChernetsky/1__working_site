@@ -19,6 +19,8 @@ from django.contrib import admin
 from django.contrib.staticfiles.views import serve
 from django.urls import path, include
 from django.views.decorators.cache import never_cache
+from django.views.static import serve as mediaserve
+from django.urls import re_path
 
 from video_clips.views import pageNotFound
 
@@ -36,7 +38,13 @@ if settings.DEBUG:
 
     urlpatterns.append(path('static/<path:path>', never_cache(serve)))
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
+else:
+    urlpatterns += [
+        re_path (f'^{settings.MEDIA_URL.lstrip ("/")}(?P<path>.*)$',
+        mediaserve, {'document_root': settings.MEDIA_ROOT}),
+        re_path(f'^{settings.STATIC_URL.lstrip("/")}(?P<path>.*)$',
+        mediaserve, {'document_root': settings.STATIC_ROOT}),
+    ]
 
 '''обработчик для страницы 404'''
 handler404 = pageNotFound

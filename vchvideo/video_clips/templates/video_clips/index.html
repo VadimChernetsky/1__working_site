@@ -44,17 +44,14 @@
                 {% if p.image %}
                 <div class="d-flex flex-wrap justify-content-center">
                     <img src="{% thumbnail p.image 'big' %}" class="round">
-                    <img src="{% static 'video_clips/icons/ava2.png'%}"
+                    <img src="{% static 'video_clips/icons/ava2.PNG'%}"
                          width="145" height="145" class="vhm">
                 </div>
                 {% endif %}
                 <div>
                     <ul class="param">
                         <li>
-                            <H5 class="text-center pt-2 nnk">жанр: {{p.categ}}</H5>
-                        </li>
-                        <li class="d-flex flex-wrap justify-content-center">
-                            <img src="{% static 'video_clips/icons/x5.png'%}" width="320" height="32">
+                            <H5 class="text-center pt-2 nnk">jenre:  {{p.categ}}</H5>
                         </li>
                     </ul>
                 </div>
@@ -109,7 +106,7 @@
                         </div>
                     <img src="{% static 'video_clips/icons/kn_p.svg' %}" width="50" height="50" class="cle2">
                 </div>
-                <div class="pb-2">
+                <div class="pb-2 lwr">
                     <ul class="param">
                         <li class="d-flex flex-wrap justify-content-center">
                             <img src="{% static 'video_clips/icons/x4.png'%}" width="320" height="32" class="x4">

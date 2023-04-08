@@ -198,7 +198,12 @@ html, body {
 }
 
 .nfn {
-  padding-top: 23px;
+  padding-top: 42px;
+}
+
+.lwr {
+  position: relative;
+  bottom: 5px;
 }
 
 .alr {
@@ -507,6 +512,7 @@ h3, h2, h5, h4 {
   outline: none;
   background: rgba(0, 0, 0, 0);
   transition: .3s linear;
+  color: #ffffff;
 }
 .d7 input:focus {
   width: 150px;
